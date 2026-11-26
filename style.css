@@ -1,0 +1,249 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #111512;
+  color: #eef2ee;
+  overflow: hidden;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* SẢNH CHÍNH TÁC CHIẾN */
+#lobby-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: radial-gradient(circle at top, #1f2b22 0%, #101411 75%);
+}
+
+#lobby-screen[hidden] {
+  display: none;
+}
+
+.lobby-inner {
+  max-width: 560px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.tac-code {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: #9ab39f;
+}
+
+.lobby-inner h1 {
+  margin: 0;
+  font-size: 32px;
+  color: #ffffff;
+}
+
+.tac-brief {
+  margin: 0 0 10px 0;
+  font-size: 15px;
+  line-height: 1.45;
+  color: #cbd5cd;
+}
+
+.btn-primary {
+  padding: 14px 28px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #101511;
+  background-color: #7cc47f;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* MÀN HÌNH TRONG TRẬN — BỐ CỤC NGANG */
+#battle-screen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#battle-screen[hidden] {
+  display: none;
+}
+
+/* Khung cảnh chính phủ nền toàn màn hình */
+#battle-viewport {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-color: #1b211c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#scene-placeholder {
+  font-size: 15px;
+  color: #8f9e92;
+  padding: 12px 18px;
+  border: 1px dashed #47574b;
+  border-radius: 6px;
+}
+
+#optical-reticle {
+  position: absolute;
+  font-size: 28px;
+  color: rgba(168, 255, 175, 0.75);
+  pointer-events: none;
+}
+
+/* Thanh thông tin trên đầu */
+#hud-top {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 6px 14px;
+  background-color: rgba(14, 18, 15, 0.82);
+  border: 1px solid #3c4b40;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.hud-stat span {
+  font-weight: bold;
+  color: #9be59e;
+}
+
+/* Radar ở góc trên bên phải */
+#radar-widget {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  z-index: 4;
+  width: 196px;
+  padding: 8px;
+  background-color: rgba(14, 18, 15, 0.86);
+  border: 1px solid #3c4b40;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+#radar-pad {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #0e1711;
+  border: 1px solid #4f6b56;
+}
+
+#radar-targets-list {
+  width: 100%;
+  max-height: 76px;
+  overflow-y: auto;
+  font-size: 11px;
+  line-height: 1.35;
+  color: #cfe0d2;
+}
+
+.radar-note {
+  margin: 0;
+  color: #95a899;
+}
+
+/* Bên trái: Vòng tròn điều khiển di chuyển */
+#move-pad-zone {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  z-index: 4;
+}
+
+#move-joystick {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  background-color: rgba(25, 32, 27, 0.78);
+  border: 2px solid #5c7562;
+  touch-action: none;
+}
+
+#move-stick-knob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 52px;
+  height: 52px;
+  margin-top: -26px;
+  margin-left: -26px;
+  border-radius: 50%;
+  background-color: rgba(124, 196, 127, 0.85);
+  border: 2px solid #dff5e0;
+}
+
+/* Bên phải: Cụm nút tháp pháo, nòng, bắn, ống ngắm */
+#weapon-pad-zone {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(105px, 1fr));
+  gap: 8px;
+  max-width: 250px;
+}
+
+button {
+  padding: 9px 11px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #eef2ee;
+  background-color: rgba(34, 44, 37, 0.9);
+  border: 1px solid #58705e;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus-visible {
+  background-color: rgba(54, 72, 59, 0.95);
+  outline: 2px solid #9be59e;
+  outline-offset: 1px;
+}
+
+#btn-fire-cannon {
+  grid-column: span 2;
+  background-color: rgba(146, 42, 36, 0.92);
+  border-color: #d66860;
+}
